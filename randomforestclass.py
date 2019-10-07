@@ -10,7 +10,7 @@ x = data[['temp', 'street']]
 y = data['ice']
 
 # 82 decision tree.
-# This is magic number (by takefuji.) Why? He don't know.
+# This is magic number (by take fuji.) Why? He don't know.
 # 最適な決定木の数がある
 clf = RandomForestClassifier(n_estimators=82, min_samples_split=2)
 # ML process is just here.
