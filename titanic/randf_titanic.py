@@ -4,18 +4,22 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 titanic = pd.read_csv('titanic.csv', encoding="shift-jis")
+# remove `name` and `row.names` column
+# because these information does not have any relationship with survive.
 titanic = titanic.drop(['name', 'row.names'], axis=1)
+
+# NAの所には平均値を入れておく
 mean = round(titanic['age'].mean(), 2)
 titanic['age'].fillna(mean, inplace=True)
 titanic.fillna("", inplace=True)
 
+# 全自動で、非数値を数値に変換！
 le = LabelEncoder()
 for i in titanic.columns.values.tolist():
     if i == 'age':
         pass
     else:
         titanic[i] = le.fit_transform(titanic[i])
-
 
 titanic_target = titanic['survived']
 titanic_data = titanic.drop(['survived'], axis=1)
